@@ -1,0 +1,8 @@
+com/base/mapper/impl/RegisterNutritionPlanMapper.class
+com/base/strategy/StrategyApplication.class
+com/base/mapper/IMapper.class
+com/base/navigator/NavigationApplication.class
+com/base/strategy/IStrategy.class
+com/base/navigator/NutritionPlanNavigator.class
+com/base/strategy/impl/Teste.class
+com/base/strategy/impl/Teste2.class

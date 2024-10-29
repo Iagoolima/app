@@ -1,0 +1,13 @@
+com/base/domain/Focus.class
+com/base/dto/RegisterNutritionPlanDtoRequest.class
+com/base/business/application/BusinessApplication.class
+com/base/domain/User.class
+com/base/domain/Restriction.class
+com/base/business/application/SessionDataManager.class
+com/base/business/application/ErrorResponse.class
+com/base/domain/entity/EntityUUID.class
+com/base/business/NutritionPlanBusinessApplication.class
+com/base/domain/entity/EntityID.class
+com/base/domain/UserNutrition.class
+com/base/business/application/Business.class
+com/base/domain/NutritionPlan.class
