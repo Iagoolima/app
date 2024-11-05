@@ -1,6 +1,6 @@
 package com.base.navigator;
 
-import com.base.strategy.impl.BuilderObjectCreateMealPlanToModuleIAStrategy;
+import com.base.strategy.impl.SendMealPlanToModuleIAStrategy;
 import com.base.strategy.impl.RegisterProfileNutritionStrategy;
 import com.base.strategy.impl.RegisterProfileNutritionToUserStrategy;
 import com.base.strategy.impl.ValidateProfileNutritionStrategy;
@@ -20,7 +20,7 @@ public class ProfileNutritionNavigator extends NavigationApplication{
     private RegisterProfileNutritionToUserStrategy registerProfileNutritionToUserStrategy;
 
     @Autowired
-    private BuilderObjectCreateMealPlanToModuleIAStrategy builderObjectCreateMealPlanToModuleIAStrategy;
+    private SendMealPlanToModuleIAStrategy sendMealPlanToModuleIAStrategy;
 
     public void registerNavigation() {
         navigatorExecute(validateProfileNutritionStrategy, registerProfileNutritionStrategy, registerProfileNutritionToUserStrategy);
