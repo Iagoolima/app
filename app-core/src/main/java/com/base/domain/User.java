@@ -17,7 +17,7 @@ public class User extends EntityUUID {
 	@Column(length = 100)
 	private String email;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_plano_nutricional", foreignKey = @ForeignKey(name = "fk_plano_nutricional"))
 	private ProfileNutrition profileNutrition;
 

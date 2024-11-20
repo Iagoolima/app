@@ -21,11 +21,11 @@ public class ProfileNutrition extends EntityID {
 
     private int desiredWeight;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_focus", referencedColumnName = "id")
     private Focus focus;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "perfil_nutricional_restricoes",
             joinColumns = @JoinColumn(name = "profile_nutrition_id"),

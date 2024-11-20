@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MealPlanToModuleIADTO {
+public class ProfileNutritionToModuleIARequestDTO {
 
     private String name;
 
