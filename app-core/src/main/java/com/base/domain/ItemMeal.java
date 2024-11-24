@@ -1,24 +1,28 @@
 package com.base.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.base.domain.entity.EntityID;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-public class ItemMeal {
+@Entity
+@Table(name = "item_refeicao")
+public class ItemMeal extends EntityID {
 
-    @JsonProperty("food")
     private String food;
 
-    @JsonProperty("calories")
     private int calories;
 
-    @JsonProperty("details")
     private String details;
 
-    @JsonProperty("id")
-    private int id;
-
-    @JsonProperty("quantity")
     private String quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "meal_id", nullable = false)
+    private Meal meal;
+
+    @PrePersist
+    protected void onCreate() {
+        super.onCreate();
+    }
 }

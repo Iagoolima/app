@@ -1,9 +1,8 @@
 package com.base.strategy.impl;
 
-import com.base.dto.MealPlanDto;
-import com.base.mealPlan.GenerateMealPlanApi;
 import com.base.business.application.Business;
-import com.base.dto.ProfileNutritionToModuleIADtoRequest;
+import com.base.domain.MealPlan;
+import com.base.facade.mealPlanFacade.MealPlanfacade;
 import com.base.strategy.IStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Component;
 import static com.base.business.application.Business.getSession;
 
 @Component
-public class SendDataModuleIAStrategy implements IStrategy {
+public class SaveMealPlanStrategy implements IStrategy {
 
     @Autowired
-    private GenerateMealPlanApi generateMealPlanApi;
+    private MealPlanfacade facade;
 
     @Override
     public void execute() {
@@ -22,8 +21,11 @@ public class SendDataModuleIAStrategy implements IStrategy {
         Business business = getSession();
 
         if(!business.isError()){
-            MealPlanDto response = generateMealPlanApi.generateMealPlanPrimary(business.getObject(ProfileNutritionToModuleIADtoRequest.class));
-            business.addObject(response);
+
+            MealPlan mealPlan = business.getObject(MealPlan.class);
+            facade.mealPlanRegisterOne(mealPlan);
+
         }
+
     }
 }

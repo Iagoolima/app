@@ -1,4 +1,4 @@
-package com.base.facade.MappingMealFacade;
+package com.base.facade.mappingMealFacade;
 
 import com.base.domain.MappingMeal;
 import com.base.service.MappingMealService;

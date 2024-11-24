@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProfileNutritionToModuleIARequestDTO {
+public class ProfileNutritionToModuleIADtoRequest {
 
     private String name;
 
