@@ -87,6 +87,7 @@ public class SecurityConfig {
 						.permitAll()
 						.requestMatchers("/auth/update-forgot-password")
 						.permitAll()
+						.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**").permitAll()
 						.anyRequest()
 						.authenticated())
 				.sessionManagement()
