@@ -21,7 +21,7 @@ public class ValidateProfileNutritionStrategy implements IStrategy {
         Business business = getSession();
 
         if(!(business.getUser().getProfileNutrition() == null)) {
-            business.setError(message.profileNutritionRegister, business.getUser().getId(), "ValidateProfileNutritionStrategy");
+            business.setError(message.profileNutritionRegister, business.getUser().getId(), ValidateProfileNutritionStrategy.class);
         }
 
         ProfileNutrition profileNutrition = business.getObject(ProfileNutrition.class);

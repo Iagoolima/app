@@ -1,7 +1,7 @@
 package com.base.processor;
 
 import com.base.business.application.Business;
-import com.base.dto.ProfileNutritionToModuleIADtoRequest;
+import com.base.dto.moduleIA.ProfileNutritionToModuleIADtoRequest;
 import com.base.navigator.MealPlanNavigator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

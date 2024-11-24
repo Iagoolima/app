@@ -3,6 +3,7 @@ package com.base.controller.impl;
 import com.base.controller.BaseController;
 import com.base.controller.ICrudController;
 import com.base.processor.MealPlanProcessor;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,11 @@ public class MealPlanController extends BaseController implements ICrudControlle
     @Autowired
     private MealPlanProcessor processor;
 
+    @Operation(
+            summary = "Gera um Plano alimentar",
+            description = "Este endpoint gera um plano alimentar apartir do modulo de Inteligencia Artificial",
+            tags = {"Module IA"}
+    )
     @PostMapping("/generate")
     public ResponseEntity register1() {
         return processor.registerProcessor();

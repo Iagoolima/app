@@ -1,7 +1,7 @@
 package com.base.mealPlan;
 
-import com.base.dto.MealPlanDto;
-import com.base.dto.ProfileNutritionToModuleIADtoRequest;
+import com.base.dto.moduleIA.MealPlanDto;
+import com.base.dto.moduleIA.ProfileNutritionToModuleIADtoRequest;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -4,6 +4,7 @@ import com.base.domain.entity.EntityID;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Data
@@ -19,6 +20,8 @@ public class Meal extends EntityID {
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemMeal> items;
+
+    private LocalTime time;
 
     @PrePersist
     protected void onCreate() {

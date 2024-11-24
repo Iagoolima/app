@@ -4,9 +4,9 @@ import com.base.domain.ItemMeal;
 import com.base.domain.Meal;
 import com.base.domain.MealPlan;
 import com.base.domain.ProfileNutrition;
-import com.base.dto.ItemMealDto;
-import com.base.dto.MealDto;
-import com.base.dto.MealPlanDto;
+import com.base.dto.moduleIA.ItemMealDto;
+import com.base.dto.moduleIA.MealDto;
+import com.base.dto.moduleIA.MealPlanDto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

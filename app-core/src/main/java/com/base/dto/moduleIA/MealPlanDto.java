@@ -1,4 +1,4 @@
-package com.base.dto;
+package com.base.dto.moduleIA;
 
 import lombok.Data;
 

@@ -2,10 +2,11 @@ package com.base.strategy.impl;
 
 import com.base.business.application.Business;
 import com.base.constants.ItemMealConstants;
+import com.base.constants.MealPlanConstants;
 import com.base.domain.MealPlan;
-import com.base.dto.ItemMealDto;
-import com.base.dto.MealDto;
-import com.base.dto.MealPlanDto;
+import com.base.dto.moduleIA.ItemMealDto;
+import com.base.dto.moduleIA.MealDto;
+import com.base.dto.moduleIA.MealPlanDto;
 import com.base.mapper.impl.MealPlanMapper;
 import com.base.strategy.IStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ValidateMealPlanFromModuleIAStrategy implements IStrategy {
 
     @Autowired
     private ItemMealConstants fieldConst;
+
+    @Autowired
+    private MealPlanConstants message;
 
     @Autowired
     private MealPlanMapper mapper;
@@ -46,7 +50,8 @@ public class ValidateMealPlanFromModuleIAStrategy implements IStrategy {
                     validateValueMealPlan(meal.getMealName(), fieldConst.mealName);
 
                     if (!error.isEmpty()) {
-                        business.setError(meal.getMealName() + "\n" + error);
+                        business.setError(meal.getMealName() + "\n" + error, business.getUser().getId(), ValidateMealPlanFromModuleIAStrategy.class);
+                        business.setError(message.valueNullMealPlan);
                     }
                 }
 

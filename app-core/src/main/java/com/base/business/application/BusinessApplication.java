@@ -23,11 +23,11 @@ public class BusinessApplication<T extends BusinessApplication<T>> {
         }
     }
 
-    public void setError(String message, UUID idUser, String className) {
+    public void setError(String message, UUID idUser, Class className) {
         if(!error){
             this.messageError.setMessage(message);
             this.error = true;
-            logger.error(MessageLoggerConstants.error(idUser, message, className));
+            logger.error(MessageLoggerConstants.error(idUser, message, String.valueOf(className)));
         }
     }
 
