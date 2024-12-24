@@ -17,8 +17,10 @@ public class MealPlan extends EntityID {
 
     private int totalCalories;
 
-    @OneToMany(mappedBy = "mealPlan", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "mealPlan", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Meal> meals;
+
+    private Boolean completed;
 
     @PrePersist
     protected void onCreate() {

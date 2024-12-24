@@ -1,13 +1,16 @@
 package com.base.mealPlan;
 
-import com.base.dto.moduleIA.MealPlanDto;
+import com.base.WebClientApplication;
+import com.base.dto.moduleIA.MealPlanDtoResponse;
 import com.base.dto.moduleIA.ProfileNutritionToModuleIADtoRequest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GenerateMealPlanApi extends WebClientApplication{
+public class GenerateMealPlanApi extends WebClientApplication {
 
-    public MealPlanDto generateMealPlanPrimary(ProfileNutritionToModuleIADtoRequest profileNutrition){
-         return post("/create/meal_plan", profileNutrition, MealPlanDto.class );
+    @Bean
+    public MealPlanDtoResponse generateMealPlanPrimary(ProfileNutritionToModuleIADtoRequest profileNutrition){
+         return post("/create/meal_plan", profileNutrition, MealPlanDtoResponse.class );
     }
 }

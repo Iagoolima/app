@@ -12,13 +12,17 @@ import java.util.List;
 @Table(name = "refeicao")
 public class Meal extends EntityID {
 
-    private String mealName;
-
     @ManyToOne
     @JoinColumn(name = "meal_plan_id", nullable = false)
     private MealPlan mealPlan;
 
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private String mealName;
+
+    @ManyToOne
+    @JoinColumn(name= "mapping_meal_id", nullable = false)
+    private MappingMeal idMappingMeal;
+
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ItemMeal> items;
 
     private LocalTime time;

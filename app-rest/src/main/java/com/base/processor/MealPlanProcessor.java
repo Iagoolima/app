@@ -1,6 +1,9 @@
 package com.base.processor;
 
 import com.base.business.application.Business;
+import com.base.dto.ClassGeneric;
+import com.base.dto.ConfirmMealPlanDtoRequest;
+import com.base.dto.FindMealGeneratedDtoResponse;
 import com.base.dto.moduleIA.ProfileNutritionToModuleIADtoRequest;
 import com.base.navigator.MealPlanNavigator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,38 @@ public class MealPlanProcessor {
 
         navigation.generateMealPlanNavigation();
 
-        return null;
+        if(business.isError()){
+            return ResponseEntity.badRequest().body(business.getMessageError());
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
 
+    public ResponseEntity<?> findFromValidateMeal(Integer idMappingMeal){
+
+        Business business = getSession();
+        business.addObject(new ClassGeneric<>(idMappingMeal));
+
+        navigation.findMealGeneratedNavigation();
+
+        if(business.isError()){
+            return ResponseEntity.badRequest().body(business.getMessageError());
+        } else {
+            return ResponseEntity.ok(business.getObject(FindMealGeneratedDtoResponse.class));
+        }
+    }
+
+    public ResponseEntity<?> confirmMealPlan(ConfirmMealPlanDtoRequest dto){
+
+        Business business = getSession();
+        business.addObject(dto);
+
+        navigation.confirmMealPlan();
+
+        if(business.isError()){
+            return ResponseEntity.badRequest().body(business.getMessageError());
+        } else {
+            return ResponseEntity.ok().build();
+        }
     }
 }

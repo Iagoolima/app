@@ -1,12 +1,9 @@
 package com.base.mapper.impl;
 
-import com.base.domain.ItemMeal;
-import com.base.domain.Meal;
-import com.base.domain.MealPlan;
-import com.base.domain.ProfileNutrition;
+import com.base.domain.*;
 import com.base.dto.moduleIA.ItemMealDto;
-import com.base.dto.moduleIA.MealDto;
-import com.base.dto.moduleIA.MealPlanDto;
+import com.base.dto.moduleIA.MealDtoResponse;
+import com.base.dto.moduleIA.MealPlanDtoResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,21 +12,27 @@ import java.util.List;
 @Component
 public class MealPlanMapper {
 
-    public MealPlan toEntity(MealPlanDto dto, ProfileNutrition profileNutrition){
+    public MealPlan toEntity(MealPlanDtoResponse dto, ProfileNutrition profileNutrition){
 
         MealPlan mealPlanEntity = new MealPlan();
         mealPlanEntity.setProfileNutrition(profileNutrition);
         mealPlanEntity.setTotalCalories(dto.getTotalCalories());
+        mealPlanEntity.setCompleted(false);
 
         List<Meal> mealListEntity = new ArrayList<>();
-        for(MealDto mealDto : dto.getMeals()){
+        for(MealDtoResponse mealDtoResponse : dto.getMeals()){
 
             Meal mealEntity = new Meal();
             mealEntity.setMealPlan(mealPlanEntity);
-            mealEntity.setMealName(mealDto.getMealName());
+            mealEntity.setMealName(mealDtoResponse.getMealName());
+
+            MappingMeal mappingMealEntity = new MappingMeal();
+            mappingMealEntity.setId(mealDtoResponse.getId());
+
+            mealEntity.setIdMappingMeal(mappingMealEntity);
 
             List<ItemMeal> itemMealListEntity = new ArrayList<>();
-            for(ItemMealDto itemMealDto : mealDto.getItems()){
+            for(ItemMealDto itemMealDto : mealDtoResponse.getItems()){
                 ItemMeal itemMeal = new ItemMeal();
                 itemMeal.setCalories(itemMealDto.getCalories());
                 itemMeal.setDetails(itemMealDto.getDetails());

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import static com.base.business.application.Business.getSession;
 
 @Component
-public class SaveMealPlanStrategy implements IStrategy {
+public class RegisterPrimaryMealPlanStrategy implements IStrategy {
 
     @Autowired
     private MealPlanFacade facade;
@@ -23,10 +23,9 @@ public class SaveMealPlanStrategy implements IStrategy {
         if(!business.isError()){
 
             MealPlan mealPlan = business.getObject(MealPlan.class);
-            facade.saveMealPlan(mealPlan);
+            facade.registerPrimaryMealPlan(mealPlan);
 
         }
 
     }
-
 }

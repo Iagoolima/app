@@ -1,7 +1,7 @@
 package com.base.strategy.impl;
 
 import com.base.business.application.Business;
-import com.base.domain.MealPlan;
+import com.base.constants.MealPlanConstants;
 import com.base.facade.mealPlanFacade.MealPlanFacade;
 import com.base.strategy.IStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,13 @@ import org.springframework.stereotype.Component;
 import static com.base.business.application.Business.getSession;
 
 @Component
-public class SaveMealPlanStrategy implements IStrategy {
+public class ValidateMealPlanNotConfirmed implements IStrategy {
 
     @Autowired
     private MealPlanFacade facade;
+
+    @Autowired
+    private MealPlanConstants message;
 
     @Override
     public void execute() {
@@ -22,11 +25,12 @@ public class SaveMealPlanStrategy implements IStrategy {
 
         if(!business.isError()){
 
-            MealPlan mealPlan = business.getObject(MealPlan.class);
-            facade.saveMealPlan(mealPlan);
+           Integer idProfileNutrition = business.getUser().getProfileNutrition().getId();
+
+           if(facade.findCompletedMealPlan(idProfileNutrition)){
+               business.setError(message.mealPlanCompleted);
+           }
 
         }
-
     }
-
 }
