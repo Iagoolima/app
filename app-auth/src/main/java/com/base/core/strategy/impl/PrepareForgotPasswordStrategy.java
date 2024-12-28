@@ -32,7 +32,7 @@ public class PrepareForgotPasswordStrategy implements IStrategy {
 			forgotPassword.setIdAuthUser(authUser.getId());
 			forgotPassword.setCode(generatedCodeAuth.generatedCode(numberOfCodeGeneratorDigits.DIGITS_FORGOT_PASSWORD));
 
-			businessData.getTokenResponse().setToken(forgotPassword.getTokenUpdate().toString());
+			businessData.getTokenResponse().setAcessToken(forgotPassword.getTokenUpdate().toString());
 		}
 	}
 

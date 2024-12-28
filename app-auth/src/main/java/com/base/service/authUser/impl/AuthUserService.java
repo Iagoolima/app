@@ -47,5 +47,4 @@ public class AuthUserService implements IAuthUserService {
 	public void saveAuthUser(AuthUser authUser) {
 		authUserRepository.save(authUser);
 	}
-
 }

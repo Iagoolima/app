@@ -83,6 +83,15 @@ public class AuthUserController implements IAuthUserController {
 				: ResponseEntity.ok().build();
 	}
 
+	@PostMapping("/acess-token")
+	public ResponseEntity<?> generatedAcessToken() {
+		GeneratedAcessTokenBusinessData generatedAcessTokenBusinessData = handleBusinessOperation(
+				new GeneratedAcessTokenBusinessData(), authUserNavigation::generatedAcessToken);
+		return generatedAcessTokenBusinessData.isError()
+				? ResponseEntity.badRequest().body(generatedAcessTokenBusinessData.getMessageError())
+				: ResponseEntity.ok().build();
+	}
+
 	private <T extends BusinessApplication<?>> T handleBusinessOperation(T businessData, Runnable navigation) {
 		BusinessApplication.setStaticInstance(businessData.getClass(), businessData);
 		navigation.run();

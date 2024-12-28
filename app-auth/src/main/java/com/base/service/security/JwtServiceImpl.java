@@ -20,8 +20,11 @@ import java.util.Base64;
 @Service
 public class JwtServiceImpl {
 
-	@Value("${jwt.expiracao}")
-	private String expiration;
+	@Value("${jwt.acesso-expiracao}")
+	private String acessExpiration;
+
+	@Value("${jwt.refresh-token}")
+	private String refreshTokenExpiration;
 
 	@Value("${jwt.chave-assinatura}")
 	private String signatureKey;
@@ -35,7 +38,7 @@ public class JwtServiceImpl {
 	}
 
 	public String generateToken(AuthUser user) throws JOSEException {
-		long exp = Long.parseLong(expiration);
+		long exp = Long.parseLong(acessExpiration);
 		LocalDateTime expirationDateTime = LocalDateTime.now().plusMinutes(exp);
 		Instant instant = expirationDateTime.atZone(ZoneId.systemDefault()).toInstant();
 		java.util.Date data = Date.from(instant);
@@ -47,6 +50,33 @@ public class JwtServiceImpl {
 			.claim("timeExpirition", expirationDateTimeToken)
 			.claim("id", user.getId().toString())
 			.build();
+
+		SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claims);
+
+		signedJWT.sign(new MACSigner(signatureKey));
+
+		JWEObject jweObject = new JWEObject(new JWEHeader(JWEAlgorithm.DIR, EncryptionMethod.A128GCM),
+				new Payload(signedJWT));
+
+		jweObject.encrypt(new DirectEncrypter(getSecretKey()));
+
+		return jweObject.serialize();
+	}
+
+	public String generateRefreshToken(AuthUser user) throws JOSEException {
+		long exp = Long.parseLong(refreshTokenExpiration);
+		LocalDateTime expirationDateTime = LocalDateTime.now().plusMinutes(exp);
+		Instant instant = expirationDateTime.atZone(ZoneId.systemDefault()).toInstant();
+		java.util.Date data = Date.from(instant);
+
+		String expirationDateTimeToken = expirationDateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+
+		JWTClaimsSet claims = new JWTClaimsSet.Builder().subject(user.getEmail())
+				.expirationTime(data)
+				.claim("timeExpirition", expirationDateTimeToken)
+				.claim("id", user.getId().toString())
+				.claim("refreshToken", true)
+				.build();
 
 		SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claims);
 
@@ -78,6 +108,11 @@ public class JwtServiceImpl {
 			java.util.Date dataEx = claims.getExpirationTime();
 			LocalDateTime dataExpiration = dataEx.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
+			Boolean isRefreshToken = (Boolean) claims.getClaim("refreshToken");
+			if (isRefreshToken != null && isRefreshToken) {
+				return !LocalDateTime.now().isAfter(dataExpiration);
+			}
+
 			return !LocalDateTime.now().isAfter(dataExpiration);
 		}
 		catch (Exception e) {
@@ -94,5 +129,7 @@ public class JwtServiceImpl {
 			return null;
 		}
 	}
+
+
 
 }

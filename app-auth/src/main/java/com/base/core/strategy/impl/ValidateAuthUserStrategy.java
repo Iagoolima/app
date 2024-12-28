@@ -40,7 +40,8 @@ public class ValidateAuthUserStrategy implements IStrategy {
 			authUser.setPassword(encryption.getPasswordEncrypt(authUser.getPassword(), authUserData.getId()));
 
 			if (passwordEncoder.matches(authUser.getPassword(), authUserData.getPassword())) {
-				businessData.getTokenResponse().setToken(jwtService.generateToken(authUserData));
+				businessData.getTokenResponse().setAcessToken(jwtService.generateToken(authUserData));
+				businessData.getTokenResponse().setRefreshToken(jwtService.generateRefreshToken(authUserData));
 			}
 			else {
 				businessData.setError(messageAuth.ERROR_PASSWORD_INCORRECT);

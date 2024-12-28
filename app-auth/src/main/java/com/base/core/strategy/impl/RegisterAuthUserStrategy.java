@@ -31,7 +31,8 @@ public class RegisterAuthUserStrategy implements IStrategy {
 
 			facade.registerAuthUser(authUser);
 
-			businessData.getTokenResponse().setToken(jwtService.generateToken(authUser));
+			businessData.getTokenResponse().setAcessToken(jwtService.generateToken(authUser));
+			businessData.getTokenResponse().setRefreshToken(jwtService.generateRefreshToken(authUser));
 
 		}
 	}

@@ -102,6 +102,9 @@ public class AuthUserNavigation extends NavigationApplication implements IAuthUs
 	@Autowired
 	private ValidateEmailAvailabilityCheckerStrategy validateEmailAvailabilityCheckerStrategy;
 
+	@Autowired
+	private GeneratedAcessTokenStrategy generatedAcessTokenStrategy;
+
 	public void checkCodeForgotPasswordNavigation() {
 		navigatorExecute(checkerTokenUpdateForgotPasswordStrategy, checkerTimerForgotPasswordStrategy,
 				checkerCodeForgotPasswordStrategy, updateStateForgotPassowordStrategy);
@@ -135,6 +138,10 @@ public class AuthUserNavigation extends NavigationApplication implements IAuthUs
 	public void validateEmailNavigation() {
 		navigatorExecute(validateEmailAvailabilityCheckerStrategy, generateCodeValidateEmailStrategy,
 				generateBodyEmailValidateEmailStrategy, sendValidateEmailStrategy, saveValidateEmailStrategy);
+	}
+
+	public void generatedAcessToken() {
+		navigatorExecute(generatedAcessTokenStrategy);
 	}
 
 }
