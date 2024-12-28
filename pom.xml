@@ -24,9 +24,9 @@
     <modules>
         <module>app-auth</module>
         <module>app-server</module>
-        <module>app-core</module>
+        <module>app-domain</module>
         <module>app-rest</module>
-        <module>app-workflow</module>
+        <module>app-core</module>
         <module>app-infra</module>
         <module>app-integration</module>
     </modules>

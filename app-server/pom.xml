@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.base</groupId>
-            <artifactId>app-core</artifactId>
+            <artifactId>app-domain</artifactId>
             <version>0.0.1</version>
         </dependency>
         <dependency>
@@ -44,7 +44,7 @@
         </dependency>
         <dependency>
             <groupId>com.base</groupId>
-            <artifactId>app-workflow</artifactId>
+            <artifactId>app-core</artifactId>
             <version>0.0.1</version>
         </dependency>
         <dependency>
