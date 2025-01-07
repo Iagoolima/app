@@ -6,7 +6,7 @@ import com.base.core.business.impl.LoginBusinessData;
 import com.base.core.strategy.IStrategy;
 import com.base.domain.AuthUser;
 import com.base.service.security.JwtServiceImpl;
-import com.base.utils.impl.EncryptBCript;
+import com.base.utils.impl.EncryptBCrypt;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class ValidateAuthUserStrategy implements IStrategy {
 
 	@Autowired
-	private EncryptBCript encryption;
+	private EncryptBCrypt encryption;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;

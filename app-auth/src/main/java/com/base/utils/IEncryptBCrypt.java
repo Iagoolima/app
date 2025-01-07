@@ -2,7 +2,7 @@ package com.base.utils;
 
 import java.util.UUID;
 
-public interface IEncryptBCript {
+public interface IEncryptBCrypt {
 
 	String encryptPassword(String seed, UUID water);
 

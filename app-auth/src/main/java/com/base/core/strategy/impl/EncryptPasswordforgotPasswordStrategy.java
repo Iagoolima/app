@@ -4,7 +4,7 @@ import com.base.core.business.impl.UpdatePasswordForgotPasswordBusinessData;
 import com.base.core.strategy.IStrategy;
 import com.base.domain.AuthUser;
 import com.base.domain.UpdatePasswordForgotPassword;
-import com.base.utils.impl.EncryptBCript;
+import com.base.utils.impl.EncryptBCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class EncryptPasswordforgotPasswordStrategy implements IStrategy {
 
 	@Autowired
-	private EncryptBCript encription;
+	private EncryptBCrypt encription;
 
 	@Override
 	public void execute() {
