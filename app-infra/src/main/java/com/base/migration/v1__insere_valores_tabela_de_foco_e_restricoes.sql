@@ -1,29 +1,3 @@
-INSERT INTO foco_nutricional (name) VALUES
-('Perder Peso'),
-('Ganho de Massa Muscular'),
-('Manutenção de Peso'),
-('Melhora da Saúde Geral'),
-('Aumento da Energia'),
-('Controle de Colesterol'),
-('Dieta Vegetariana'),
-('Dieta Vegana'),
-('Dieta Low Carb'),
-('Dieta Paleo');
-
-INSERT INTO restricao_nutricional (name) VALUES
-('Diabetes'),
-('Hipertensão'),
-('Intolerância à Lactose'),
-('Alergia ao Glúten'),
-('Doença Celíaca'),
-('Colesterol Alto'),
-('Alergia a Nozes'),
-('Insuficiência Renal'),
-('Gastrite'),
-('Síndrome do Intestino Irritável');
-
-
-//considerar esses
 INSERT INTO foco_nutricional
     (id, name, insertion_date) VALUES
     (1, 'Perder Peso', NOW()),
