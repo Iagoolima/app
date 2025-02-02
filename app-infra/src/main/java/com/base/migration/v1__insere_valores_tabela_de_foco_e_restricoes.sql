@@ -12,7 +12,8 @@ INSERT INTO foco_nutricional
     (10, 'Dieta Paleo', NOW());
 
 INSERT INTO restricao_nutricional (id, insertion_date, name)
-VALUES (1, NOW(), 'Diabetes'),
+VALUES  (0, NOW(), 'Sem restrição')
+(1, NOW(), 'Diabetes'),
        (2, NOW(), 'Hipertensão'),
        (3, NOW(), 'Intolerância à Lactose'),
        (4, NOW(), 'Alergia ao Glúten'),
